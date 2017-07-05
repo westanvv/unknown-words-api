@@ -13,7 +13,7 @@ const defaultConfig = {
   },
 
   version: require('../../package.json').version,
-  root: path.normalize(__dirname + '/../../..'),
+  root: path.normalize(__dirname + '/../..'),
   port: process.env.PORT || 4567,
   ip: process.env.IP || '0.0.0.0',
   apiPrefix: '', // Could be /api/resource or /api/v2/resource
