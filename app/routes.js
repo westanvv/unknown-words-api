@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 import DefaultController from './controllers/default';
-import AuthController from './controllers/auth.controller';
-import UsersController from './controllers/users.controller';
-import PostsController from './controllers/posts.controller';
+import AuthController from './controllers/auth';
+import UsersController from './controllers/users';
+import PostsController from './controllers/posts';
 
 import authenticate from './middleware/authenticate';
 import accessControl from './middleware/access-control';
@@ -17,12 +17,12 @@ routes.get('/', DefaultController.index);
 routes.post('/auth/login', AuthController.login);
 
 // Users
-routes.get('/users', UsersController.search);
+routes.get('/users', UsersController.getAll);
 routes.post('/users', UsersController.create);
-routes.get('/users/me', authenticate, UsersController.fetch);
+routes.get('/users/me', authenticate, UsersController.getUser);
 routes.put('/users/me', authenticate, UsersController.update);
 routes.delete('/users/me', authenticate, UsersController.delete);
-routes.get('/users/:username', UsersController._populate, UsersController.fetch);
+routes.get('/users/:username', UsersController._populate, UsersController.getUser);
 
 // Post
 routes.get('/posts', PostsController.search);

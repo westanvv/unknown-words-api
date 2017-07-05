@@ -30,16 +30,15 @@ class UsersController {
     }
   };
 
-  search = async (req, res, next) => {
+  getAll = async (req, res, next) => {
     try {
-      // @TODO Add pagination
       res.json(await User.find());
     } catch(err) {
       next(err);
     }
   };
 
-  fetch = (req, res) => {
+  getUser = (req, res) => {
     const user = req.user || req.currentUser;
 
     if (!user) {
