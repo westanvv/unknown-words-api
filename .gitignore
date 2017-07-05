@@ -5,4 +5,5 @@ build
 coverage
 node_modules
 .env
+.env.test
 .idea

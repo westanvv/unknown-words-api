@@ -7,10 +7,10 @@
     "build": "npm run clean && babel app -d build",
     "clean": "rm -rf build && mkdir build",
     "start": "nodemon",
-    "test": "NODE_ENV=test mocha --recursive --reporter spec --compilers js:babel-register tests",
+    "test": "mocha --recursive --require tests/index.js --reporter spec --compilers js:babel-register tests",
     "lint": "eslint app",
     "test:watch": "nodemon --exec 'npm run test' tests",
-    "coverage": "NODE_ENV=test babel-node ./node_modules/.bin/isparta cover _mocha -- --recursive --reporter spec --compilers js:babel-register tests",
+    "coverage": "babel-node ./node_modules/.bin/isparta cover _mocha -- --recursive --require tests/index.js --reporter spec --compilers js:babel-register tests",
     "validate": "npm run test && npm outdated --depth 0"
   },
   "author": "Vadym Nemchenko <vadym.nemchenko@swanlogic.com>",

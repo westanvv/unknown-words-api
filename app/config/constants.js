@@ -52,7 +52,7 @@ const environmentConfigs = {
     },
   },
   test: {
-    port: 5678,
+    port: process.env.PORT || 5678,
     mongo: {
       uri: process.env.MONGO_URI,
     },
