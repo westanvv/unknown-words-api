@@ -35,9 +35,9 @@ const defaultConfig = {
    * Security configuation options regarding sessions, authentication and hashing
    */
   security: {
-    sessionSecret: process.env.SESSION_SECRET || 'i-am-the-secret-key',
-    sessionExpiration: process.env.SESSION_EXPIRATION || 60 * 60 * 24 * 7, // 1 week
-    saltRounds: process.env.SALT_ROUNDS || 12,
+    sessionSecret: process.env.SESSION_SECRET,
+    sessionExpiration: process.env.SESSION_EXPIRATION,
+    saltRounds: process.env.SALT_ROUNDS,
   },
 };
 
@@ -45,7 +45,7 @@ const defaultConfig = {
 const environmentConfigs = {
   development: {
     mongo: {
-      uri: process.env.MONGO_URI || 'mongodb://localhost:27018/db_project',
+      uri: process.env.MONGO_URI,
     },
     security: {
       saltRounds: 4,
@@ -54,7 +54,7 @@ const environmentConfigs = {
   test: {
     port: 5678,
     mongo: {
-      uri: process.env.MONGO_URI || 'mongodb://localhost:27018/db_project',
+      uri: process.env.MONGO_URI,
     },
     security: {
       saltRounds: 4,
