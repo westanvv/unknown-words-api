@@ -1,9 +1,7 @@
 import * as chai from 'chai';
-import server from '../utils/server.mock';
 const expect = chai.expect;
 
 import User from '../../app/models/user';
-import Post from '../../app/models/post';
 
 const masterUserCopy = {
   username: 'jamesdean',
