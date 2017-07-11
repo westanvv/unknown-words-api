@@ -95,17 +95,6 @@ UserSchema
  * User Methods
  */
 UserSchema.methods = {
-  getWhitelistFields() {
-    return [
-      'firstname',
-      'lastname',
-      'email',
-      'username',
-      'password',
-      'role',
-    ];
-  },
-
   // getPosts() {
   //   return Post.find({ _user: this._id });
   // },
@@ -145,5 +134,17 @@ UserSchema.methods = {
 };
 
 const UserModel = mongoose.model('User', UserSchema);
+
+// Methods
+UserModel.getWhitelistFields = () => {
+  return [
+    'firstname',
+    'lastname',
+    'email',
+    'username',
+    'password',
+    'role',
+  ];
+};
 
 export default UserModel;

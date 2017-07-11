@@ -20,19 +20,17 @@ LearningSchema.set('toJSON', {
   },
 });
 
-// Methods
-LearningSchema.methods = {
-  getWhitelistFields() {
-    return [
-      'user',
-      'word',
-      'need_study',
-      'created_by',
-      'date_create',
-    ];
-  },
-};
-
 const LearningModel = mongoose.model('learning', LearningSchema);
+
+// Methods
+LearningModel.getWhitelistFields = () => {
+  return [
+    'user',
+    'word',
+    'need_study',
+    'created_by',
+    'date_create',
+  ];
+};
 
 export default LearningModel;

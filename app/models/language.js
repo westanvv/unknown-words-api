@@ -24,10 +24,6 @@ LanguageSchema.set('toJSON', {
   },
 });
 
-// Methods
-LanguageSchema.methods = {
-};
-
 const LanguageModel = mongoose.model('languages', LanguageSchema);
 
 // Methods

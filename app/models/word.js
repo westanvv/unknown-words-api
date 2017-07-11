@@ -26,21 +26,19 @@ WordSchema.set('toJSON', {
   },
 });
 
-// Methods
-WordSchema.methods = {
-  getWhitelistFields() {
-    return [
-      'word',
-      'description',
-      'transcription',
-      'examples',
-      'language',
-      'created_by',
-      'date_create',
-    ];
-  },
-};
-
 const WordModel = mongoose.model('words', WordSchema);
+
+// Methods
+WordModel.getWhitelistFields = () => {
+  return [
+    'word',
+    'description',
+    'transcription',
+    'examples',
+    'language',
+    'created_by',
+    'date_create',
+  ];
+};
 
 export default WordModel;
