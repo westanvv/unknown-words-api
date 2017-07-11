@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import Post from './post';
 import Constants from '../config/constants';
 
 const Schema = mongoose.Schema;
@@ -77,14 +76,6 @@ UserSchema
       });
   }, 'Username already taken.');
 
-// Validate password field
-UserSchema
-  .path('password')
-  .validate(function(password) {
-    return password.length >= 6 && password.match(/\d+/g);
-  }, 'Password be at least 6 characters long and contain 1 number.');
-
-//
 UserSchema
   .pre('save', function(done) {
     // Encrypt password before saving the document
@@ -104,9 +95,20 @@ UserSchema
  * User Methods
  */
 UserSchema.methods = {
-  getPosts() {
-    return Post.find({ _user: this._id });
+  getWhitelistFields() {
+    return [
+      'firstname',
+      'lastname',
+      'email',
+      'username',
+      'password',
+      'role',
+    ];
   },
+
+  // getPosts() {
+  //   return Post.find({ _user: this._id });
+  // },
 
   /**
    * Authenticate - check if the passwords are the same

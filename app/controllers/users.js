@@ -3,14 +3,6 @@ import User from '../models/user';
 
 class UsersController {
 
-  whitelist = [
-    'firstname',
-    'lastname',
-    'email',
-    'username',
-    'password',
-  ];
-
   _populate = async (req, res, next) => {
     const { username } = req.params;
 
@@ -49,7 +41,7 @@ class UsersController {
   };
 
   create = async (req, res, next) => {
-    const params = utils.filterParams(req.body, this.whitelist);
+    const params = utils.filterParams(req.body, User.getWhitelistFields());
 
     let newUser = new User({
       ...params,
@@ -67,11 +59,14 @@ class UsersController {
   };
 
   update = async (req, res, next) => {
-    const newAttributes = utils.filterParams(req.body, this.whitelist);
-    const updatedUser = Object.assign({}, req.currentUser, newAttributes);
+    const params = utils.filterParams(req.body, User.getWhitelistFields());
+    const updatedUser = await User.findByIdAndUpdate(
+      req.currentUser._id,
+      { $set: params },
+    );
 
     try {
-      res.status(200).json(await updatedUser.save());
+      res.status(200).json(updatedUser);
     } catch (err) {
       next(err);
     }
