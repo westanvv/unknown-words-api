@@ -2,6 +2,7 @@ export default {
   stripTags,
   matchAll,
   filterParams,
+  updateParams,
 };
 
 function stripTags(text) {
@@ -37,4 +38,13 @@ function filterParams(params, whitelist) {
     }
   }
   return filtered;
+}
+
+function updateParams(obj, params) {
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      obj[key] = params[key];
+    }
+  }
+  return obj;
 }
