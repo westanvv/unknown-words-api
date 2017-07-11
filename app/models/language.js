@@ -9,7 +9,7 @@ const LanguageSchema = new Schema({
   code: {
     type: String,
     unique: true,
-    required: [true, 'Username is required.'],
+    required: true,
   },
 });
 
@@ -26,14 +26,16 @@ LanguageSchema.set('toJSON', {
 
 // Methods
 LanguageSchema.methods = {
-  getWhitelistFields() {
-    return [
-      'name',
-      'code',
-    ];
-  },
 };
 
 const LanguageModel = mongoose.model('languages', LanguageSchema);
+
+// Methods
+LanguageModel.getWhitelistFields = () => {
+  return [
+    'name',
+    'code',
+  ];
+};
 
 export default LanguageModel;

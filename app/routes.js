@@ -3,10 +3,12 @@ import { Router } from 'express';
 import DefaultController from './controllers/default';
 import AuthController from './controllers/auth';
 import UsersController from './controllers/users';
+import LanguagesController from './controllers/languages';
 
 import authenticate from './middleware/authenticate';
 import accessControl from './middleware/access-control';
 import errorHandler from './middleware/error-handler';
+import validateRequest from './middleware/validate-request';
 
 const routes = new Router();
 
@@ -25,6 +27,13 @@ routes.get('/users/:username', UsersController._populate, UsersController.getUse
 
 // Admin
 routes.get('/admin', accessControl('admin'), DefaultController.index);
+
+// Languages
+routes.get('/languages', LanguagesController.getAll);
+routes.get('/languages/:id', validateRequest.id, LanguagesController.getElement);
+routes.post('/languages', LanguagesController.create);
+routes.put('/languages/:id', validateRequest.id, LanguagesController.update);
+routes.delete('/languages/:id', validateRequest.id, LanguagesController.delete);
 
 routes.use(errorHandler);
 

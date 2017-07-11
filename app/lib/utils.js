@@ -1,8 +1,12 @@
+import mongoose from 'mongoose';
+
 export default {
   stripTags,
   matchAll,
   filterParams,
   updateParams,
+  isValidId,
+  returnId
 };
 
 function stripTags(text) {
@@ -47,4 +51,14 @@ function updateParams(obj, params) {
     }
   }
   return obj;
+}
+
+function isValidId(value) {
+  return mongoose.Types.ObjectId.isValid(value);
+}
+
+function returnId(obj) {
+  return {
+    id: obj._id,
+  };
 }
